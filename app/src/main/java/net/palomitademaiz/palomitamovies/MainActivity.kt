@@ -8,6 +8,8 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import net.palomitademaiz.palomitamovies.models.Movie
+import net.palomitademaiz.palomitamovies.ui.components.MovieCarousel
 import net.palomitademaiz.palomitamovies.ui.theme.PalomitaMoviesTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,7 +19,17 @@ class MainActivity : ComponentActivity() {
             PalomitaMoviesTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    val sampleMovie = Movie(
+                        id = 12345,
+                        title = "Raya and the Last Dragon",
+                        originalTitle = "Raya and the Last Dragon",
+                        posterPath = "https://www.themoviedb.org/t/p/w440_and_h660_face/lPsD10PP4rgUGiGR4CCXA6iY0QQ.jpg",
+                        releaseDate = "Mar 03, 2021",
+                        score = 0.83f
+                    )
+
+                    val movies = listOf(sampleMovie, sampleMovie, sampleMovie, sampleMovie, sampleMovie)
+                    MovieCarousel(carouselTitle = "Popular", movies = movies)
                 }
             }
         }
