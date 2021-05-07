@@ -3,6 +3,7 @@ package net.palomitademaiz.palomitamovies.ui.components
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -21,7 +22,7 @@ fun MovieCarousel(
     movies: List<Movie>,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier) {
+    Column(modifier.padding(bottom = 16.dp)) {
         Row(modifier = Modifier.fillMaxWidth()) {
             Text(
                 modifier = Modifier.padding(16.dp),
@@ -37,8 +38,14 @@ fun MovieCarousel(
         }
 
         LazyRow {
-            items(movies) { movie ->
-                Movie(movie, Modifier.padding(start = 16.dp, bottom = 16.dp))
+            itemsIndexed(movies) { index, movie ->
+
+                val movieModifier = if (index == movies.size - 1) {
+                    Modifier.padding(start = 16.dp, end = 16.dp)
+                } else {
+                    Modifier.padding(start = 16.dp)
+                }
+                Movie(movie, movieModifier)
             }
         }
     }
