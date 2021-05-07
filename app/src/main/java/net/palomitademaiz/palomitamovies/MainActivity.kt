@@ -29,22 +29,29 @@ class MainActivity : ComponentActivity() {
                     )
 
                     val movies = listOf(sampleMovie, sampleMovie, sampleMovie, sampleMovie, sampleMovie)
-                    MovieCarousel(carouselTitle = "Popular", movies = movies)
+                    MovieCarousel(carouselTitle = "Popular", movies = movies, carouselRightText = "More")
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     PalomitaMoviesTheme {
-        Greeting("Android")
+        Surface(color = MaterialTheme.colors.background) {
+            val sampleMovie = Movie(
+                id = 12345,
+                title = "Raya and the Last Dragon",
+                originalTitle = "Raya and the Last Dragon",
+                posterPath = "https://www.themoviedb.org/t/p/w440_and_h660_face/lPsD10PP4rgUGiGR4CCXA6iY0QQ.jpg",
+                releaseDate = "Mar 03, 2021",
+                score = 0.83f
+            )
+
+            val movies = listOf(sampleMovie, sampleMovie, sampleMovie, sampleMovie, sampleMovie)
+            MovieCarousel(carouselTitle = "Popular", movies = movies, carouselRightText = "More")
+        }
     }
 }

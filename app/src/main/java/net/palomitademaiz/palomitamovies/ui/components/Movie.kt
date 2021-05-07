@@ -1,13 +1,12 @@
 package net.palomitademaiz.palomitamovies.ui.components
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,24 +23,26 @@ fun Movie(movie: Movie, modifier: Modifier = Modifier) {
         elevation = 8.dp
     ) {
         Column {
-            ConstraintLayout {
-                val (image, score) = createRefs()
-                RemoteImage(
-                    url = movie.posterPath,
-                    contentDescription = movie.title,
-                    modifier = Modifier.constrainAs(image) {
-                        centerHorizontallyTo(parent)
-                        top.linkTo(parent.top)
-                    })
+            Box {
+                Column {
+                    RemoteImage(
+                        url = movie.posterPath,
+                        contentDescription = movie.title,
+                        width = 124.dp,
+                        height = 200.dp
+                    )
+                    Spacer(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(16.dp)
+                    )
+                }
                 Score(
                     score = movie.score,
                     modifier = Modifier
                         .padding(start = 8.dp)
-                        .constrainAs(score) {
-                            start.linkTo(image.start)
-                            centerAround(image.bottom)
-                        })
-
+                        .align(Alignment.BottomStart)
+                )
             }
             Text(
                 text = movie.title,
