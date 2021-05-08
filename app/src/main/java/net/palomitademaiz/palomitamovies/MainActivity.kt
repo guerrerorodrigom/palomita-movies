@@ -5,9 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import net.palomitademaiz.palomitamovies.models.Filter
 import net.palomitademaiz.palomitamovies.models.Movie
 import net.palomitademaiz.palomitamovies.ui.components.MovieCarousel
 import net.palomitademaiz.palomitamovies.ui.theme.PalomitaMoviesTheme
@@ -28,8 +28,21 @@ class MainActivity : ComponentActivity() {
                         score = 0.83f
                     )
 
-                    val movies = listOf(sampleMovie, sampleMovie, sampleMovie, sampleMovie, sampleMovie)
-                    MovieCarousel(carouselTitle = "Popular", movies = movies, carouselRightText = "More")
+                    val selectedFilter = Filter("Streaming")
+                    val filter = Filter("On TV")
+                    val filterTwo = Filter("In Theaters")
+
+                    val filters = listOf(filter, selectedFilter, filterTwo)
+
+                    val movies =
+                        listOf(sampleMovie, sampleMovie, sampleMovie, sampleMovie, sampleMovie)
+                    MovieCarousel(
+                        filters = filters,
+                        selectedFilter = selectedFilter,
+                        carouselTitle = "Popular",
+                        movies = movies,
+                        carouselRightText = "More"
+                    )
                 }
             }
         }
@@ -50,8 +63,20 @@ fun DefaultPreview() {
                 score = 0.83f
             )
 
+            val selectedFilter = Filter("Streaming")
+            val filter = Filter("On TV")
+            val filterTwo = Filter("In Theaters")
+
+            val filters = listOf(filter, selectedFilter, filterTwo)
+
             val movies = listOf(sampleMovie, sampleMovie, sampleMovie, sampleMovie, sampleMovie)
-            MovieCarousel(carouselTitle = "Popular", movies = movies, carouselRightText = "More")
+            MovieCarousel(
+                carouselTitle = "Popular",
+                movies = movies,
+                carouselRightText = "More",
+                selectedFilter = selectedFilter,
+                filters = filters
+            )
         }
     }
 }
