@@ -33,9 +33,7 @@ fun Movie(
                 Column {
                     RemoteImage(
                         url = movie.posterPath,
-                        contentDescription = movie.title,
-                        width = 124.dp,
-                        height = 200.dp
+                        contentDescription = movie.title
                     )
                     Spacer(
                         modifier = Modifier

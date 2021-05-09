@@ -27,7 +27,7 @@ fun CircularIconButton(
 ) {
     Box(
         modifier
-            .size(20.dp)
+            .size(30.dp)
             .clip(shape = RoundedCornerShape(50))
             .background(color = backgroundColor)
     ) {
