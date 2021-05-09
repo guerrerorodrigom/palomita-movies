@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import net.palomitademaiz.palomitamovies.models.CardMenuItem
 import net.palomitademaiz.palomitamovies.models.Filter
 import net.palomitademaiz.palomitamovies.models.Movie
 
@@ -19,6 +20,7 @@ fun MovieCarousel(
     movies: List<Movie>,
     filters: List<Filter>,
     selectedFilter: Filter,
+    movieCardMenuList: List<CardMenuItem>,
     modifier: Modifier = Modifier
 ) {
     Column(modifier.padding(bottom = 16.dp)) {
@@ -51,7 +53,7 @@ fun MovieCarousel(
                 } else {
                     Modifier.padding(start = 16.dp)
                 }
-                Movie(movie, movieModifier)
+                Movie(movie, movieCardMenuList, movieModifier)
             }
         }
     }
@@ -81,6 +83,7 @@ fun PreviewMovieCarousel() {
         selectedFilter = selectedFilter,
         carouselTitle = "Popular",
         movies = movies,
-        carouselRightText = "More"
+        carouselRightText = "More",
+        movieCardMenuList = listOf()
     )
 }

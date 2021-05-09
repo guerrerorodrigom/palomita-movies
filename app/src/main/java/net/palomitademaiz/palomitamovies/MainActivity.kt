@@ -5,8 +5,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Bookmark
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import net.palomitademaiz.palomitamovies.models.CardMenuItem
 import net.palomitademaiz.palomitamovies.models.Filter
 import net.palomitademaiz.palomitamovies.models.Movie
 import net.palomitademaiz.palomitamovies.ui.components.MovieCarousel
@@ -34,6 +40,11 @@ class MainActivity : ComponentActivity() {
 
                     val filters = listOf(filter, selectedFilter, filterTwo)
 
+                    val item = CardMenuItem(name = "Add to list", icon = Icons.Default.List, { })
+                    val item2 = CardMenuItem(name = "Favorite", icon = Icons.Default.Favorite, { })
+                    val item3 = CardMenuItem(name = "Watchlist", icon = Icons.Default.Bookmark, { })
+                    val item4 = CardMenuItem(name = "Your rating", icon = Icons.Default.Star, { })
+
                     val movies =
                         listOf(sampleMovie, sampleMovie, sampleMovie, sampleMovie, sampleMovie)
                     MovieCarousel(
@@ -41,7 +52,8 @@ class MainActivity : ComponentActivity() {
                         selectedFilter = selectedFilter,
                         carouselTitle = "Popular",
                         movies = movies,
-                        carouselRightText = "More"
+                        carouselRightText = "More",
+                        movieCardMenuList = listOf(item, item2, item3, item4)
                     )
                 }
             }
@@ -75,7 +87,8 @@ fun DefaultPreview() {
                 movies = movies,
                 carouselRightText = "More",
                 selectedFilter = selectedFilter,
-                filters = filters
+                filters = filters,
+                movieCardMenuList = listOf()
             )
         }
     }

@@ -5,17 +5,23 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.constraintlayout.compose.ConstraintLayout
+import net.palomitademaiz.palomitamovies.models.CardMenuItem
 import net.palomitademaiz.palomitamovies.models.Movie
 
 @Composable
-fun Movie(movie: Movie, modifier: Modifier = Modifier) {
+fun Movie(
+    movie: Movie,
+    movieCardMenuList: List<CardMenuItem>,
+    modifier: Modifier = Modifier
+) {
     Card(
         shape = RoundedCornerShape(8.dp),
         modifier = modifier
@@ -36,6 +42,10 @@ fun Movie(movie: Movie, modifier: Modifier = Modifier) {
                             .fillMaxWidth()
                             .height(16.dp)
                     )
+                }
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    Spacer(modifier = Modifier.weight(1f))
+                    CardMenu(options = movieCardMenuList)
                 }
                 Score(
                     score = movie.score,
@@ -71,5 +81,10 @@ fun MoviePreview() {
         releaseDate = "Mar 03, 2021",
         score = 0.83f
     )
-    Movie(sampleMovie)
+    val item = CardMenuItem(name = "Add to list", icon = Icons.Default.List, { })
+    val item2 = CardMenuItem(name = "Favorite", icon = Icons.Default.Favorite, { })
+    val item3 = CardMenuItem(name = "Watchlist", icon = Icons.Default.Bookmark, { })
+    val item4 = CardMenuItem(name = "Your rating", icon = Icons.Default.Star, { })
+
+    Movie(sampleMovie, listOf(item, item2, item3, item4))
 }
