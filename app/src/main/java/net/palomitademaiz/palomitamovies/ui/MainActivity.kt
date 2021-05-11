@@ -1,4 +1,4 @@
-package net.palomitademaiz.palomitamovies
+package net.palomitademaiz.palomitamovies.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,12 +12,14 @@ import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import dagger.hilt.android.AndroidEntryPoint
 import net.palomitademaiz.palomitamovies.models.CardMenuItem
 import net.palomitademaiz.palomitamovies.models.Filter
 import net.palomitademaiz.palomitamovies.models.Movie
 import net.palomitademaiz.palomitamovies.ui.components.MovieCarousel
 import net.palomitademaiz.palomitamovies.ui.theme.PalomitaMoviesTheme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

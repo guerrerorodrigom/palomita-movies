@@ -1,18 +1,20 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
-    compileSdk = 30
-    buildToolsVersion = "30.0.3"
+    compileSdk = AppConfig.compileSdk
+    buildToolsVersion = AppConfig.buildTools
 
     defaultConfig {
         applicationId = "net.palomitademaiz.palomitamovies"
-        minSdk = 21
-        targetSdk = 30
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = AppConfig.minSdk
+        targetSdk = AppConfig.targetSdk
+        versionCode = AppConfig.versionCode
+        versionName = AppConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -42,31 +44,37 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = rootProject.extra["compose_version"] as String
-        kotlinCompilerVersion = "1.4.32"
+        kotlinCompilerVersion = Dependencies.Versions.kotlin
     }
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.3.2")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("com.google.android.material:material:1.3.0")
+    implementation(Android.coreKtx)
+    implementation(Android.appCompat)
+    implementation(Android.materialDesign)
+    implementation(Android.lifecycleRuntime)
 
-    implementation("androidx.compose.ui:ui:${rootProject.extra["compose_version"]}")
-    implementation("androidx.compose.material:material:${rootProject.extra["compose_version"]}")
-    implementation("androidx.compose.ui:ui-tooling:${rootProject.extra["compose_version"]}")
-    implementation("androidx.compose.foundation:foundation:${rootProject.extra["compose_version"]}")
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.0-alpha06")
-    implementation("androidx.compose.material:material-icons-extended:${rootProject.extra["compose_version"]}")
-    implementation("androidx.compose.runtime:runtime:${rootProject.extra["compose_version"]}")
-    implementation("androidx.compose.runtime:runtime-livedata:${rootProject.extra["compose_version"]}")
+    implementation(Android.Compose.ui)
+    implementation(Android.Compose.material)
+    implementation(Android.Compose.uiTooling)
+    implementation(Android.Compose.foundation)
+    implementation(Android.Compose.constraintLayout)
+    implementation(Android.Compose.materialIcons)
+    implementation(Android.Compose.runtime)
+    implementation(Android.Compose.runtimeLiveData)
+    implementation(Android.Compose.activity)
 
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
-    implementation("androidx.activity:activity-compose:1.3.0-alpha07")
-    implementation("com.google.accompanist:accompanist-coil:0.9.0")
+    implementation(Dependencies.Accompanist.coil)
 
-    testImplementation("junit:junit:4.+")
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:${rootProject.extra["compose_version"]}")
+    implementation(Dependencies.Hilt.android)
+    kapt(Dependencies.Hilt.compiler)
+
+    implementation(Dependencies.Retrofit.retrofit)
+    implementation(Dependencies.Retrofit.converterGson)
+
+    testImplementation(Dependencies.Testing.junit)
+    androidTestImplementation(Dependencies.Testing.junitExt)
+    androidTestImplementation(Dependencies.Testing.espressoCore)
+    androidTestImplementation(Dependencies.Testing.composeJunit)
 }
